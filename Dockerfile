@@ -1,31 +1,26 @@
-FROM ubuntu:xenial
+## BUILDING
+##   (from project root directory)
+##   $ docker build -t memcached-for-mattlk13-include-os .
+##
+## RUNNING
+##   $ docker run -p 11211:11211 memcached-for-mattlk13-include-os
+##
+## CONNECTING
+##   Lookup the IP of your active docker host using:
+##     $ docker-machine ip $(docker-machine active)
+##   Connect to the container at DOCKER_IP:11211
+##     replacing DOCKER_IP for the IP of your active docker host
+##
+## NOTES
+##   This is a prebuilt version of Memcached.
+##   For more information and documentation visit:
+##     https://github.com/bitnami/bitnami-docker-memcached
 
-RUN apt-get update && apt-get -y install \
-    git \
-    net-tools \
-    sudo \
-    wget \
-&& rm -rf /var/lib/apt/lists/*
+FROM gcr.io/bitnami-containers/memcached:1.4.34-r0
 
-RUN useradd --create-home -s /bin/bash ubuntu
-RUN adduser ubuntu sudo
-RUN echo -n 'ubuntu:ubuntu' | chpasswd
+ENV STACKSMITH_STACK_ID="d33apjf" \
+    STACKSMITH_STACK_NAME="Memcached for Mattlk13/include-OS" \
+    STACKSMITH_STACK_PRIVATE="1" \
+    BITNAMI_CONTAINER_ORIGIN="stacksmith"
 
-# Enable passwordless sudo for users under the "sudo" group
-RUN sed -i.bkp -e \
-      's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
-      /etc/sudoers
-
-USER ubuntu
-
-ADD . /home/ubuntu/IncludeOS
-WORKDIR /home/ubuntu/IncludeOS
-
-RUN sudo apt-get update && \
-    sudo do_bridge="" ./etc/install_all_source.sh \
-&& sudo rm -rf /var/lib/apt/lists/*
-
-VOLUME /service
-WORKDIR /service
-
-CMD ./run.sh
+## STACKSMITH-END: Modifications below this line will be unchanged when regenerating
