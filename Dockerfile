@@ -18,7 +18,7 @@
 
 FROM gcr.io/bitnami-containers/memcached:1.4.34-r0
 
-ENV STACKSMITH_STACK_ID="d33apjf" \
+ENV STACKSMITH_STACK_ID="5jsxktw" \
     STACKSMITH_STACK_NAME="Memcached for Mattlk13/include-OS" \
     STACKSMITH_STACK_PRIVATE="1" \
     BITNAMI_CONTAINER_ORIGIN="stacksmith"
