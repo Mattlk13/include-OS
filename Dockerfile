@@ -16,9 +16,9 @@
 ##   For more information and documentation visit:
 ##     https://github.com/bitnami/bitnami-docker-memcached
 
-FROM gcr.io/bitnami-containers/memcached:1.4.34-r0
+FROM gcr.io/bitnami-containers/memcached:1.4.34-r1
 
-ENV STACKSMITH_STACK_ID="d33apjf" \
+ENV STACKSMITH_STACK_ID="6q75da1" \
     STACKSMITH_STACK_NAME="Memcached for Mattlk13/include-OS" \
     STACKSMITH_STACK_PRIVATE="1" \
     BITNAMI_CONTAINER_ORIGIN="stacksmith"
